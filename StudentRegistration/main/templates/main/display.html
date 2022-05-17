@@ -1,0 +1,157 @@
+{% extends 'main/home.html' %}
+
+<title>{% block title %}LIST{% endblock %}</title>
+{% block content %}
+<!-- Navbar Header -->
+
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-4 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32">
+          <use xlink:href="" />
+        </svg>
+        <img src="https://scontent-hkt1-2.xx.fbcdn.net/v/t39.30808-6/237814267_879330069382938_3855293704158883401_n.jpg?_nc_cat=104&ccb=1-6&_nc_sid=09cbfe&_nc_eui2=AeGRZmeXbSFTBUcDidfM2RO8pU4m8efaZjClTibx59pmMI-sUzOmmAb4JzQjeDw07yU&_nc_ohc=Xh5HZCgmhZIAX_GhSxD&_nc_ht=scontent-hkt1-2.xx&oh=00_AT-3OJwRDYAgBquNuSSmA1JQGaeovsKT2Bz_TNwHaLwsWw&oe=62843F58"
+          class="bi me-2" alt="Icon" width="55" height="55" loading="lazy">
+        <span class="fs-4" style="color:#003663">STSM ENROLLMENT SYSTEM</span>
+      </a>
+
+      <ul class="nav  nav-pills">
+        <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="/register" class="nav-link">Registration</a></li>
+        <li class="nav-item"><a href="/admitted-list" class="nav-link active">Admitted Students</a></li>
+
+      </ul>
+    </header>
+  </div>
+
+<!-- Navbar Header End -->
+  
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <div class="text-end">
+            <form method="get">
+                {{myFilter.form}}
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+        <hr>
+              
+      <div class="d-flex text-muted pt-3">
+        <table class="table table-hover">
+            <tr>
+                <th>EXAM CODE</th>
+                <th>NAME</th>
+                <th>COLLEGE</th>
+                <th>PROGRAM</th>
+                <th>YEAR</th>
+            </tr>
+            {% for i in student_in_page %}
+                <tr>
+                    <td>{{i.exam_number}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.college}}</td>
+                    <td>{{i.course}}</td>
+                    <td>{{i.year}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <small class="d-block mt-3">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+            {% if student_in_page.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ student_in_page.previous_page_number }}">Previous</a></li>
+            {% endif %}
+
+            <li class="page-item disabled"><a href="#" class="page-link">Page {{ student_in_page.number }} of {{ student_in_page.paginator.num_pages }}</a></li>
+
+            {% if student_in_page.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ student_in_page.next_page_number }}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ student_in_page.paginator.num_pages }}">Last &raquo</a></li>
+            {% endif %}
+            </ul>
+        </nav>
+    </small>
+</main>
+
+<div class="container">
+    <footer class="py-3 my-4">
+      <p class="text-center text-muted">&copy; 2022 NARJAMRAL CSCC22 BOIS</p>
+    </footer>
+  </div>
+
+<!-- <div class="card text-end">
+    <div class="card-header">
+        <form method="get">
+            {{myFilter.form}}
+            <button class="btn btn-primary" type="submit">Search</button>
+
+        </form>
+    </div>
+    <div class="card text-center">
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <th>EXAM CODE</th>
+                    <th>NAME</th>
+                    <th>COLLEGE</th>
+                    <th>PROGRAM</th>
+                    <th>YEAR</th>
+                </tr>
+                {% for i in students %}
+                    <tr>
+                        <td>{{i.exam_number}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.college}}</td>
+                        <td>{{i.course}}</td>
+                        <td>{{i.year}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+    
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
+  </div>
+<br>
+
+    <div class = "row"> 
+        <div class="col-md">
+            <div class = "card card-body">
+                <h5>ACCEPTED STUDENT</h5>
+                <div class="row justify-content-end">
+                    <form method="get">
+                        {{myFilter.form}}
+                        <button class="btn btn-primary" type="submit">Search</button>
+    
+                    </form>
+                </div>
+                
+                
+            </div>
+            <div class = "card card-body">
+                <table class="table">
+                    <tr>
+                        <th>EXAM CODE</th>
+                        <th>NAME</th>
+                        <th>COLLEGE</th>
+                        <th>PROGRAM</th>
+                        <th>YEAR</th>
+                    </tr>
+                    {% for i in students %}
+                        <tr>
+                            <td>{{i.exam_number}}</td>
+                            <td>{{i.name}}</td>
+                            <td>{{i.college}}</td>
+                            <td>{{i.course}}</td>
+                            <td>{{i.year}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div> -->
+{% endblock %}
