@@ -10,14 +10,20 @@ This is the official repo for CSCC22B Group E.
 Create python virtual environment
 
 > Windows: `python -m venv .venv`
+> 
+> Linux: `python3 -m venv .venv`
 
 Activate virtual environment
 
 > Windows: `cd .venv/Scripts && activate && cd ../..`
+> 
+> Linux: `source .venv/bin/activate`
 
 Install the python libraries
 
-> `pip install -r requirements.txt`
+> Windows: `pip install -r requirements.txt`
+> 
+> Linux: `sudo pip install -r requirements.txt`
 
 Create environment variables
 
